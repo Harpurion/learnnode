@@ -1,32 +1,17 @@
-let num = 1;
-console.log(num);
-console.log(typeof num);
-num = 1.2;
-console.log(num);
-console.log(typeof num);
-let text = 'Hello World';
+let text = 'Hello ';
+text = text + 'Artur!';
 console.log(text);
-console.log(typeof text);
-let bool = true;
-console.log(bool);
-console.log(typeof bool);
-bool = false;
-console.log(bool);
-console.log(typeof bool);
-let undef = undefined;
-console.log(undef);
-console.log(typeof undef);
-let nil = null;
-console.log(nil);
-console.log(typeof nil);
-let array = [1, 2, 'hello', 'world', true, [1, 2, 3]];
-console.log(array);
-console.log(typeof array);
-let obj = {
-    name: 'John',
-    age: 67,
-    hairColor: 'Brown',
-    isMale: true,
-}
-console.log(obj);
-console.log(typeof obj);
+text = 'asdasd';
+text = 'adasads';
+text = "Don't use double quotes unless needed";
+text = 'Don\'t use double quotes\n unless needed';
+console.log(text);
+let name = 'Artur';
+let age = 17;
+let sexuality = 'heterosexual';
+text = 'Your name is ' + name + ' and you are ' + age + ' years old and your sexuality is ' + sexuality + '.';
+console.log(text);
+text = `Your name is ${name} 
+and you are ${age} years old 
+and your sexuality is ${sexuality}.`;
+console.log(text);
