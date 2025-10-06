@@ -1,5 +1,1 @@
-@use 'sass:color';
-$bgcolor: lightblue;
-html, body {
-    background: color.scale($bgcolor, $lightness: -30%);
-}
+@use "bootstrap/scss/bootstrap";
