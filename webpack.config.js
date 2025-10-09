@@ -1,27 +1,32 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-let pages =[];
-for(let i = 1; i < 10; i++){
- let page = new HtmlWebpackPlugin({
-      filename: `page${i}.html`,
-      template: "./src/views/about.njk",
+let response = await fetch('https://rickandmortyapi.com/api/character');
+let data = await response.json();
+console.log(data);
+
+let pages = [];
+for(let character of data.results){
+    let page = new HtmlWebpackPlugin({
+      filename: `${character.id}.html`,
+      template: "./src/views/page.njk",
       templateParameters: {
-        page: i
+        character, // same as character: character
       }
     });
-  pages.push(page);
+    pages.push(page);
 }
 
+
 export default {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(import.meta.dirname, 'dist'),
+    filename: "main.js",
+    path: path.resolve(import.meta.dirname, "dist"),
   },
   devServer: {
     static: {
-      directory: path.join(import.meta.dirname, 'public'),
+      directory: path.join(import.meta.dirname, "public"),
     },
     compress: true,
     port: 9000,
@@ -38,41 +43,41 @@ export default {
           "style-loader",
           "css-loader",
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sassOptions: {
-                quietDeps: true
-              }
-            }
-          }],
+                quietDeps: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.njk$/,
         use: [
           {
-            loader: 'simple-nunjucks-loader',
-            options: {}
-          }
-        ]
-      }
+            loader: "simple-nunjucks-loader",
+            options: {},
+          },
+        ],
+      },
     ],
   },
-    plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
-      template: './src/views/index.njk',
+      template: "./src/views/index.njk",
       templateParameters: {
-      name: 'Artur',
-      fruits: ['mango', 'banana', 'apple'],
+        characters: data.results
       }
     }),
     new HtmlWebpackPlugin({
-      filename: 'about.html',
-      template: './src/views/about.njk'
+      filename: "about.html",
+      template: "./src/views/about.njk",
     }),
     new HtmlWebpackPlugin({
-      filename: 'contacts.html',
-      template: './src/views/contacts.njk'
+      filename: "contacts.html",
+      template: "./src/views/contacts.njk",
     }),
-    ...pages,
+    ...pages
   ],
 };
