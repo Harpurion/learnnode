@@ -15,7 +15,7 @@ const routes = [
   { path: '/', component: ToDo, name: 'ToDo' },
   { path: '/modals', component: Modals, name: 'Modals' },
   { path: '/chuck', component: ChuckNorris, name: 'Chuck Norris' },
-  { path: '/rickandmorty', component: RickAndMorty, name: 'Rick and Morty' },
+  { path: '/rickandmorty', component: RickAndMorty, name: 'Rick And Morty' },
 ];
 
 export const router = createRouter({
