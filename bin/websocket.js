@@ -7,7 +7,11 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function message(data) {
     console.log('received: %s', data);
+    wss.clients.forEach(client => {
+      if (client.readystate === WebSocket.OPEN) {
+        client.send(data);
+      }
   });
-
-  ws.send('something');
 });
+
+}); 

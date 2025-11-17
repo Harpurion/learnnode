@@ -37,4 +37,7 @@ function send(){
         </button>
     </div>
 </div>
+<div class="notification is-link is-light" v-for="msg in messages">
+    {{ msg }}
+</div>
 </template>
