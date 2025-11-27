@@ -1,8 +1,20 @@
 function write(text) {
     process.stdout.write(text);
 }
-write('Hello World!');
-setTimeout(() => {
-    write('\x1b[6D');
-    write('MM24!');
-}, 5000);
+
+console.clear();
+write('dihh');
+
+import keypress from "keypress";
+
+keypress(process.stdin);
+
+process.stdin.on("keypress", function (ch, key) {
+    console.log(ch, key);
+    if(key && key.ctrl && key.name == "c") {   
+        process.exit();
+}
+});
+
+process.stdin.setRawMode(true);
+process.stdin.resume();
